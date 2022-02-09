@@ -13,6 +13,7 @@ function App() {
 
 	function handleIsSorted(order){
 		setIsSorted(isSorted => isSorted = order)
+		console.log("changed")
 	}
 
 	function handleIsFiltered(){

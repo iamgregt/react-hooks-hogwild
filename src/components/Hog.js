@@ -6,7 +6,7 @@ function Hog({hogs, onIsHog, isFiltered, isSorted}){
     function handleClick(hog){
         onIsHog(hog)
         console.log(hogs)
-
+        
     }
 
     // if(isSorted === "ascending"){
