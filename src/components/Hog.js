@@ -1,30 +1,44 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Hog({hogs}){
-
+function Hog({hogs, onIsHog, isFiltered, isSorted}){
+    
    
     function handleClick(hog){
-        console.log(hog)
-        console.log(hog["highest medal achieved"])
-    
+        onIsHog(hog)
+        console.log(hogs)
 
     }
 
+    // if(isSorted === "ascending"){
+    //     hogs = hogs.sort((a, b) => {
+    //         return a.name.localeCompare(b.name)
+    //     })
+    // }
+    // else if(isSorted === "descending"){
+    //     hogs = hogs.sort((a, b) => {
+    //         return b.name.localeCompare(a.name)
+    //     })
+    // }else{
+    //     return hogs
+    // }
+    const hogsToShow = hogs.filter((hog) => {
+
+        if(isFiltered){
+            return hog.greased === true
+        }else{
+            return true
+        }
+    })
+
     return(
-        <div>
-            {hogs.map((hog) =>{
-                return <><li className="pigTile" key={hog.name}><h3>{hog.name}</h3>
+        <>  
+            {hogsToShow.map((hog) =>{
+
+                return <li className="pigTile" key={hog.name}><h3>{hog.name}</h3>
                 <img src={hog.image} alt={hog.name} onClick={() => handleClick(hog)}/>
                 </li>
-                {/* <div>
-                    <h3>{hog.specialty}</h3>
-                    <h3>{hog.weight}</h3>
-                    <h3>{hog.greased ? "Greased" : "Not Greased"}</h3>
-                    <h3>{hog["highest medal achieved"]}</h3>
-                </div> */}
-                </>
             })}
-        </div>
+        </>
     )
 }
 
